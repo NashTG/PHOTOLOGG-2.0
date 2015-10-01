@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  #devise_for :usuarios
   get 'sessions/new'
 
   get 'amistad/add'
@@ -14,14 +15,14 @@ Rails.application.routes.draw do
   get 'comentario/destroy'
 
   get 'registro' => 'usuario#add'
-
-  post 'registro' => 'usuario#create'
+  
 
   get 'usuario/show'
-
+  post 'perfil' => 'usuario#show'
+  post 'usuarios' => 'usuario#show'
   get 'usuario/destroy'
 
-  get 'foto/add'
+  get 'subir' => 'foto/add'
 
   get 'foto/show'
 
@@ -31,18 +32,19 @@ Rails.application.routes.draw do
 
   post   'login'   => 'sessions#create'
 
-  delete 'logout'  => 'sessions#destroy'
+  get 'logout' => 'sessions#destroy'
 
   resources :usuario
   resources :foto
   resources :comentario
   resources :amistad
   resources :auditoria
+  resources :home
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'usuario#add'
+  root 'home#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

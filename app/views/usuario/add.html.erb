@@ -1,28 +1,30 @@
 <% provide(:title, 'Registro de Usuario') %>
-<h1>Registro</h1>
+<h1 >Registro</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(:usuario) do |f| %>
-     <%= render 'shared/error_messages' %>
+
+    <%= render 'shared/error_messages' %>
+
       <%= f.label :NICK %>
-      <%= f.text_field :NICK, class: 'form-control' %>
+      <%= f.text_field :NICK , class: 'form-control'%>
 
       <%= f.label :NOMBRE %>
-      <%= f.text_field :NOMBRE, class: 'form-control' %>
+      <%= f.text_field :NOMBRE , class: 'form-control'%>
 
       <%= f.label :APELLIDO %>
-      <%= f.text_field :APELLIDO, class: 'form-control' %>
+      <%= f.text_field :APELLIDO , class: 'form-control'%>
 
       <%= f.label :CORREO %>
-      <%= f.email_field :CORREO, class: 'form-control' %>
+      <%= f.email_field :CORREO , class: 'form-control'%>
 
       <%= f.label :CONTRASENA %>
-      <%= f.password_field :CONTRASENA, class: 'form-control' %>
+      <%= f.password_field :CONTRASENA , class: 'form-control'%>
 
       <%= f.label :CONFIRMA_CONTRASENA, "Confirma la contraseña." %>
-      <%= f.password_field :CONFIRMA_CONTRASENA, class: 'form-control' %>
-
+      <%= f.password_field :CONFIRMA_CONTRASENA , class: 'form-control'%>
+      <br>
       <%= f.submit "Registrarme", class: "btn btn-primary" %>
     <% end %>
     <p>¿Ya tienes una cuenta? <%= link_to "Inicia sesion!", login_path %></p>

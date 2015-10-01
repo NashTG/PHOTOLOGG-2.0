@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Lernin</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Photolog</title>
+    <%= stylesheet_link_tag 'application', media: 'all',
+                                           'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
 
-<%= yield %>
 
-</body>
+        <%= link_to "Photolog", root_path, id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+           <% if logged_in? %>
+          <li><%= link_to "Inicio",   root_path %></li>
+          <li><%= link_to "Perfil",   '#' %></li>
+          <li><%= link_to "Cerrar Sesion",   'logout' %></li>
+          <%else%>
+            <li><%= link_to "Inicio",   root_path %></li>
+            <li><%= link_to "Inicia sesion", 'login' %></li>
+            <li><%= link_to "Registrate", registro_path  %></li>
+          <%end%>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+    <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
 </html>

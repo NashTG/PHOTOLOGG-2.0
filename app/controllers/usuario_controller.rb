@@ -1,11 +1,18 @@
 class UsuarioController < ApplicationController
   def add
     @usuario = Usuario.new
+
     #ActiveRecord::Base.connection.execute("call insertarUsuario()")
   end
 
   def show
-    @usuario = Usuario.find(params[:id])
+    if logged_in?
+      @usuario = Usuario.find(current_user.ID_USUARIO)
+      render 'show'
+    else
+      redirect_to root_path
+      
+    end 
   end
 
   def create
@@ -14,7 +21,7 @@ class UsuarioController < ApplicationController
 		if @usuario.save
 			log_in @usuario
 			flash[:success] = "Bienvenido a Photolog!"
-  			redirect_to @usuario
+  		redirect_to @usuario
   		else
   			render new
   		end
@@ -29,3 +36,4 @@ class UsuarioController < ApplicationController
     end
 
   end
+
