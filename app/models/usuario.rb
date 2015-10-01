@@ -1,5 +1,5 @@
 class Usuario < ActiveRecord::Base
-  self.table_name = "USUARIO"
+  self.table_name = "usuario"
 
   def authenticate(contrasena)
     sql = "Call mostrarContrasena(#{self.ID_USUARIO})"

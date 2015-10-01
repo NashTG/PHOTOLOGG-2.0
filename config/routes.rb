@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   post 'registro' => 'usuario#create'
 
   get 'usuario/show'
-
+  post 'perfil' => 'usuario#show'
+  post 'usuarios' => 'usuario#show'
   get 'usuario/destroy'
 
   get 'foto/add'
@@ -38,11 +39,12 @@ Rails.application.routes.draw do
   resources :comentario
   resources :amistad
   resources :auditoria
+  resources :home
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'usuario#add'
+  root 'home#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
