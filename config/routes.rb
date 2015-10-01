@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get 'registro' => 'usuario#add'
 
+  post 'registro' => 'usuario#create'
+
   get 'usuario/show'
 
   get 'usuario/destroy'
@@ -40,7 +42,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+   root 'usuario#add'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
