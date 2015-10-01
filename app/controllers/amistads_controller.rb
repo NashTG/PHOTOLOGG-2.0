@@ -1,2 +1,0 @@
-class AmistadsController < ApplicationController
-end

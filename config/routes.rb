@@ -1,4 +1,36 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
+  get 'amistad/add'
+
+  get 'amistad/show'
+
+  get 'amistad/destroy'
+
+  get 'comentario/add'
+
+  get 'comentario/show'
+
+  get 'comentario/destroy'
+
+  get 'registro' => 'usuario#add'
+
+  get 'usuario/show'
+
+  get 'usuario/destroy'
+
+  get 'foto/add'
+
+  get 'foto/show'
+
+  get 'foto/destroy'
+
+  get    'login'   => 'sessions#new'
+
+  post   'login'   => 'sessions#create'
+
+  delete 'logout'  => 'sessions#destroy'
+
   resources :usuario
   resources :foto
   resources :comentario

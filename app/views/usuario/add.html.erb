@@ -1,0 +1,28 @@
+<% provide(:title, 'Registro de Usuario') %>
+<h1>Registro</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:usuario) do |f| %>
+      <%= f.label :NICK %>
+      <%= f.text_field :NICK %>
+
+      <%= f.label :NOMBRE %>
+      <%= f.text_field :NOMBRE %>
+
+      <%= f.label :APELLIDO %>
+      <%= f.text_field :APELLIDO %>
+
+      <%= f.label :CORREO %>
+      <%= f.email_field :CORREO %>
+
+      <%= f.label :CONTRASENA %>
+      <%= f.password_field :CONTRASENA %>
+
+      <%= f.label :CONFIRMA_CONTRASENA, "Confirma la contraseña." %>
+      <%= f.password_field :CONFIRMA_CONTRASENA %>
+
+      <%= f.submit "Registrarme", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<% provide(:title, "Ingresar") %>
+<h1>Ingresar</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :CORREO %>
+      <%= f.email_field :CORREO, class: 'form-control' %>
+
+      <%= f.label :CONTRASENA %>
+      <%= f.password_field :CONTRASENA, class: 'form-control' %>
+
+      <%= f.submit "Ingresar", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>¿Usuario nuevo? <%= link_to "Regístrate ahora!", registro_path %></p>
+  </div>
+</div>

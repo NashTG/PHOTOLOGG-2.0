@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'yaml_db'
 gem 'will_paginate', '3.0.3'
+gem 'coffee-script-source', '1.8.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
