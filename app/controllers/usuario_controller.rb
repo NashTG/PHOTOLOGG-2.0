@@ -15,6 +15,27 @@ class UsuarioController < ApplicationController
     end 
   end
 
+  def auditoria
+    if logged_in? 
+      if current_user.TIPO_USUARIO == 2
+        #@usuario = Usuario.find(current_user.ID_USUARIO)
+        @auditoria = Auditoria.all
+        #render 'auditoria'
+      end
+    else
+      redirect_to '/'
+    end 
+  end
+
+  def index
+    @usuarios = Usuario.all
+  end
+
+  def editar
+    @usuario = Usuario.find(current_user.ID_USUARIO)
+    render 'editar'
+  end
+
   def create
 		@usuario = Usuario.create(usuario_params)
     #sql= "CALL insertarUsuario('"<<@usuario.NICK.to_s<<"','"<<@usuario.CONTRASENA.to_s<<"','"<<@usuario.NOMBRE.to_s<<"','"<<@usuario.APELLIDO.to_s<<"','"<<@usuario.CORREO.to_s<<"',0)"
@@ -23,11 +44,17 @@ class UsuarioController < ApplicationController
 			flash[:success] = "Bienvenido a Photolog!"
   		redirect_to @usuario
   		else
-  			render new
+        flash.now[:danger] = 'Registro no completado.'
+  			redirect_to root_path
   		end
 	end
 
   def destroy
+    @usuario = params[:ID_USUARIO]
+    id = usuario.ID_USUARIO
+    sql = "CALL borrarUsuario("<<@usuario<<");"
+    response = ActiveRecord::Base.connection.execute(sql)
+    redirect_to listar_cuentas_path
   end
 
     private

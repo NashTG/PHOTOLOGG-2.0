@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered table-hover table-condensed">
+	<tr>
+			<th>Id_usuario</th>	
+			<th>Valor anterior de la tabla </th>
+			<th>Valor nuevo de la tabla </th>
+			<th>Fecha</th>
+			<th>Accion realizada</th>
+		</tr>
+		<% @auditoria.each do |auditoria| %>
+		<tr>
+			<td><%= auditoria.AUD_ID_USUARIO %> </td>
+			<td><%= auditoria.VALOR_ANTIGUO %> </td>
+			<td><%= auditoria.VALOR_NUEVO %> </td>
+			<td><%= auditoria.TS %> </td>
+			<td><%= auditoria.ACCION %> </td>
+		</tr>
+	<% end %>]
+</table>

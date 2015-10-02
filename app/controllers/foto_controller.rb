@@ -1,6 +1,6 @@
 class FotoController < ApplicationController
   def add
-    ActiveRecord::Base.connection.execute("call insertarFoto()")
+  ##  ActiveRecord::Base.connection.execute("call insertarFoto()")
   end
 
   def show
@@ -8,4 +8,8 @@ class FotoController < ApplicationController
 
   def destroy
   end
+
+  def create
+
+	end
 end

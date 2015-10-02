@@ -1,0 +1,22 @@
+<%= form_for @usuario, :url=>{:action => "editar"} do |f| %>
+          <p>
+            <%= f.label :NOMBRE_USUARIO %> <br>
+            <%= f.text_field :NOMBRE %>
+          </p>
+          <p>
+            <%= f.label :APELLIDO_USUARIO %> <br>
+            <%= f.text_field :APELLIDO %>
+          </p>
+          <p>
+            <%= f.label :CORREO %> <br>
+            <%= f.text_field :CORREO %>
+
+          </p>
+          <p>
+            <%= f.label :CONTRASENA %> <br>
+            <%= f.password_field :CONTRASENA %>
+          </p>
+          <p>
+            <%= f.submit 'Editar', class: "btn btn-primary"%>
+          </p>
+        <% end %>

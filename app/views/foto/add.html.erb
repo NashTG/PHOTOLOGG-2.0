@@ -1,2 +1,20 @@
-<h1>Foto#add</h1>
-<p>Find me in app/views/foto/add.html.erb</p>
+<% if logged_in? %>
+
+<h1>Sube una foto!</h1>
+	<%= form_for(:foto) do |f| %>
+
+      <%= f.label :TITULO %>
+      <%= f.text_field :TITULO , class: 'form-control'%>
+<br>
+      <%= f.file_field :FOTO , accept: "image/*"%>
+<br>
+      <%= f.label :DESCRIPCION %>
+      <%= f.text_field :DESCRIPCION , class: 'form-control'%>
+      <br>
+      <%= f.submit "Subir", class: "btn btn-primary" %>
+    <% end %>
+
+<%else%>
+
+
+<%end%>

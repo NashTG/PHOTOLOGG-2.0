@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  #devise_for :usuarios
   get 'sessions/new'
 
   get 'amistad/add'
@@ -15,24 +14,32 @@ Rails.application.routes.draw do
   get 'comentario/destroy'
 
   get 'registro' => 'usuario#add'
-  
+
+  post 'registro' => 'usuario#create'
 
   get 'usuario/show'
-  post 'perfil' => 'usuario#show'
+  get 'editar' => 'usuario#editar'
+  patch 'editar' => 'usuario#show'
   post 'usuarios' => 'usuario#show'
   get 'usuario/destroy'
+  get 'auditoria' => 'usuario#auditoria'
 
-  get 'subir' => 'foto/add'
+  get 'foto/add'
+  post 'foto/add'
 
   get 'foto/show'
+  get 'listar_cuentas' => 'usuario#index'
 
   get 'foto/destroy'
+  #get 'auditoria' => 'auditoria#index'
+
+  get 'subir' => 'foto#add'
 
   get    'login'   => 'sessions#new'
 
   post   'login'   => 'sessions#create'
 
-  get 'logout' => 'sessions#destroy'
+  get 'logout'  => 'sessions#destroy'
 
   resources :usuario
   resources :foto
