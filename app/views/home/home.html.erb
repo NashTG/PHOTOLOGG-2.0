@@ -3,22 +3,22 @@
 
 
  <% if logged_in? %>
-<% if current_user.TIPO_USUARIO == 2 %>
+    <% if current_user.TIPO_USUARIO == 2 %>
 
-  <h2>
-    Bienvenido al modo ADMINISTRADOR, logueado como: <strong><%= current_user.NOMBRE %>, <%= current_user.CORREO %></strong>
-  </h2>
-	 <%= link_to "Ver cuentas", listar_cuentas_path, class: "btn btn-lg btn-primary" %> 
-<%else%>
-  <h2>
-    Esta es la pagina principal de Photolog
-  </h2>
- <%= link_to "Sube una foto!", subir_path, class: "btn btn-lg btn-primary" %> 
+    <h2>
+      Bienvenido al modo ADMINISTRADOR, logueado como: <strong><%= current_user.NOMBRE %>, <%= current_user.CORREO %></strong>
+    </h2>
+  	 <%= link_to "Ver cuentas", listar_cuentas_path, class: "btn btn-lg btn-primary" %>
+      <%else%>
+    <h2>
+      Esta es la pagina principal de Photolog
+    </h2>
+   <%= link_to "Sube una foto!", subir_path, class: "btn btn-lg btn-primary" %>
+   <%end%>
+   <%else%>
+
+    <%= link_to "Registrate ahora!", registro_path, class: "btn btn-lg btn-primary" %>
+    <br><br>o si ya tienes una cuenta, <br><br>
+    <%= link_to "Inicia sesion!", 'login', class: "btn btn-lg btn-primary" %>
  <%end%>
- <%else%>
-
-  <%= link_to "Registrate ahora!", registro_path, class: "btn btn-lg btn-primary" %> 
-  <br><br>o si ya tienes una cuenta, <br><br>
-  <%= link_to "Inicia sesion!", 'login', class: "btn btn-lg btn-primary" %>
-  <%end%>
 </div>

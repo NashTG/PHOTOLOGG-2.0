@@ -1,7 +1,7 @@
 <% if logged_in? %>
 
 <h1>Sube una foto!</h1>
-	<%= form_for(:foto) do |f| %>
+	<%= form_for :foto, :url => 'foto/create' do |f| %>
 
       <%= f.label :TITULO %>
       <%= f.text_field :TITULO , class: 'form-control'%>

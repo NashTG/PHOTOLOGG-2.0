@@ -1,0 +1,11 @@
+<% @foto.each do |foto| %>
+<tr>
+  <br><td><%= foto.TITULO %> </td>,
+  <td><%= foto.DESCRIPCION %> </td>,
+
+  <td><%= foto.FECHA_SUBIDA %> </td>
+  <%= link_to 'show' , foto %>
+  </br>
+
+</tr>
+<% end %>

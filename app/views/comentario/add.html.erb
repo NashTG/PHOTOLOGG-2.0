@@ -1,2 +1,18 @@
-<h1>Comentario#add</h1>
-<p>Find me in app/views/comentario/add.html.erb</p>
+<% if logged_in? %>
+
+<h1>Comentar</h1>
+  <%= form_for :comentario, :url => 'comentario/create' do |f| %>
+
+      <%= f.label :COMENTARIO %>
+      <%= f.text_field :COMENTARIO , class: 'form-control'%>
+      <%= f.label :PUNTAJE %>
+      <%= f.numb_field :PUNTAJE, class: 'form-control', min: 0 , max: 5%>
+
+      <br>
+      <%= f.submit "Subir", class: "btn btn-primary" %>
+    <% end %>
+
+<%else%>
+
+
+<%end%>

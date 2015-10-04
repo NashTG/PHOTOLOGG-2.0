@@ -11,12 +11,12 @@ class UsuarioController < ApplicationController
       render 'show'
     else
       redirect_to root_path
-      
-    end 
+
+    end
   end
 
   def auditoria
-    if logged_in? 
+    if logged_in?
       if current_user.TIPO_USUARIO == 2
         #@usuario = Usuario.find(current_user.ID_USUARIO)
         @auditoria = Auditoria.all
@@ -24,11 +24,11 @@ class UsuarioController < ApplicationController
       end
     else
       redirect_to '/'
-    end 
+    end
   end
 
   def index
-    @usuarios = Usuario.all
+    @usuario = Usuario.all
   end
 
   def editar
@@ -51,9 +51,9 @@ class UsuarioController < ApplicationController
 
   def destroy
     @usuario = params[:ID_USUARIO]
-    id = usuario.ID_USUARIO
+    #id = usuario.ID_USUARIO
     sql = "CALL borrarUsuario("<<@usuario<<");"
-    response = ActiveRecord::Base.connection.execute(sql)
+    ActiveRecord::Base.connection.execute(sql)
     redirect_to listar_cuentas_path
   end
 
@@ -63,4 +63,3 @@ class UsuarioController < ApplicationController
     end
 
   end
-

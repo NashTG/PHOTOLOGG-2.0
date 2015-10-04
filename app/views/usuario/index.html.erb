@@ -1,10 +1,10 @@
-<% @usuarios.each do |usuario| %>
+<% @usuario.each do |usuario| %>
       <tr>
         <li><%= usuario.NOMBRE %>, <%= usuario.CORREO %>
-        <%= link_to 'Eliminar', usuario, method: :delete, data: { confirm: 'Are you sure?' } %>
+        | <%= link_to 'Eliminar', usuario, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 
         </li>
-        
+
       </tr>
     <% end %>

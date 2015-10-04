@@ -1,2 +1,20 @@
-<h1>Foto#show</h1>
-<p>Find me in app/views/foto/show.html.erb</p>
+
+  <%= @foto.TITULO %>
+  <%= @foto.DESCRIPCION %>
+  <%= @foto.FECHA_SUBIDA %>
+
+  <br>COMENTARIOS</br>
+<% if @comentario == nil %>
+No tiene comentarios
+<%else%>
+
+
+<% @comentario.each do |c| %>
+<br>
+    Usuario: <%= c.ID_USUARIO %>
+    Comentario: <%= c.COMENTARIO %>
+  </br>
+<%end%>
+
+<%= link_to 'Comentar', comentario_path %>
+<%end%>

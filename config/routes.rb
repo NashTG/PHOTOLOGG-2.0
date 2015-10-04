@@ -7,9 +7,12 @@ Rails.application.routes.draw do
 
   get 'amistad/destroy'
 
-  get 'comentario/add'
+#  get '/comentar' => 'comentario/add'
+  #post 'comentar' => 'comentario/add'
 
   get 'comentario/show'
+  get 'comentar' => 'comentario/add'
+  get 'comentario/add'
 
   get 'comentario/destroy'
 
@@ -23,6 +26,7 @@ Rails.application.routes.draw do
   post 'usuarios' => 'usuario#show'
   get 'usuario/destroy'
   get 'auditoria' => 'usuario#auditoria'
+  post 'foto/create'
 
   get 'foto/add'
   post 'foto/add'
