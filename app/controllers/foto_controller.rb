@@ -6,28 +6,30 @@ class FotoController < ApplicationController
 
   def show
     @foto = Foto.find(params[:id])
-    @comentario = Comentario.where('ID_FOTO = ?', @foto.ID_FOTO)
+    @comentario = Comentario.new
+    @comentarios = Comentario.all
   end
 
 
   def index
     @foto = Foto.all
+
+    # PAGINA DE FOTOS: FOTOS SUBIDAS SOLO DEL USUARIO
+    #@foto = Foto.find_by(ID_USUARIO: current_user[:ID_USUARIO])
   end
 
   def destroy
   end
   def create
     @foto = Foto.new
-    @foto = params[:add]
     @foto = Foto.create(foto_params)
-    #sql = "call insertarFoto('"<< @current_user.ID_USUARIO <<"', '"<< @foto.TITULO <<"',  null , '"<< @foto.DESCRIPCION <<"');"
-    #ActiveRecord::Base.connection.execute(sql)
+    Foto.subir(current_user.ID_USUARIO,@foto[:id])
     @foto.save
     redirect_to root_path
 	end
 
   private
   def foto_params
-    params.require(:foto).permit(:TITULO,:FOTO, :DESCRIPCION)
+    params.require(:foto).permit(:TITULO,:imagen, :DESCRIPCION, :ID_USUARIO)
   end
 end

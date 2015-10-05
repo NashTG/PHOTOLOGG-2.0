@@ -1,0 +1,11 @@
+ <%= form_for :comentario, :url => @foto do |f| %>
+<br>
+      <%= f.label :COMENTARIO %>
+      <%= f.text_field :COMENTARIO %>
+      <%= f.label :PUNTAJE %>
+      <%= f.number_field :PUNTAJE_ASIGNADO, min: 0 , max: 5%>
+      <% f.number_field :ID_USUARIO, value: current_user.ID_USUARIO%>
+      <% f.number_field :ID_FOTO, value: @foto.ID_FOTO%>
+      <br>
+      <%= f.submit "Comentar", class: "btn btn-primary"%>
+  <% end %>

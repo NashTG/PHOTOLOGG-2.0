@@ -1,11 +1,23 @@
-<% @foto.each do |foto| %>
+<%if @foto != nil %>
+
+
+<div align="center"><% @foto.each do |foto| %>
 <tr>
-  <br><td><%= foto.TITULO %> </td>,
-  <td><%= foto.DESCRIPCION %> </td>,
+  <br>
+  <strong>TITULO: <td><%= foto.TITULO %> </td> - DESCRIPCION: 
+  <td><%= foto.DESCRIPCION %> </td>,<br></strong>
+  <td><%= image_tag foto.imagen.url(:thumb) %> <br>
+	SUBIDA EL: <td><%= foto.FECHA_SUBIDA %> </td>  
 
   <td><%= foto.FECHA_SUBIDA %> </td>
-  <%= link_to 'show' , foto %>
+  
+  <%= link_to 'Ver' , foto %>
   </br>
 
 </tr>
+<% end %>
+<%else%>
+<h1>No tienes fotos subidas :(</h1>
+</div>
+
 <% end %>

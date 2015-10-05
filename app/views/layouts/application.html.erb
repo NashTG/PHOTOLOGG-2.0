@@ -20,13 +20,14 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
            <% if logged_in? %>
-           <%if current_user.TIPO_USUARIO == 2 %>
-           <li><%= link_to "Auditoria", auditoria_path %></li>
-                <li><%= link_to "Listar Cuentas",   listar_cuentas_path %></li>
-           <%end%>
-          <li><%= link_to "Inicio",   root_path %></li>
-          <li><%= link_to "Perfil",   editar_path %></li>
-          <li><%= link_to "Cerrar Sesion",   'logout' %></li>
+               <%if current_user.TIPO_USUARIO == 2 %>
+               <li><%= link_to "Auditoria", auditoria_path %></li>
+                    <li><%= link_to "Listar Cuentas",   listar_cuentas_path %></li>
+               <%end%>
+              <li><%= link_to "Mis fotos",  fotos_path %></li>
+              <li><%= link_to "Inicio",   root_path %></li>
+              <li><%= link_to "Perfil",   editar_path %></li>
+              <li><%= link_to "Cerrar Sesion",   'logout' %></li>
           <%else%>
             <li><%= link_to "Inicio",   root_path %></li>
             <li><%= link_to "Inicia sesion", 'login' %></li>

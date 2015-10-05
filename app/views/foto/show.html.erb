@@ -1,20 +1,13 @@
 
-  <%= @foto.TITULO %>
-  <%= @foto.DESCRIPCION %>
-  <%= @foto.FECHA_SUBIDA %>
+	<%= image_tag @foto.imagen.url(:normal)%>
+	TITULO:  <%= @foto.TITULO %>,
+	DESCRIPCION: <%= @foto.DESCRIPCION %>
+	SUBIDA EL: <%= @foto.FECHA_SUBIDA %>
 
-  <br>COMENTARIOS</br>
-<% if @comentario == nil %>
-No tiene comentarios
-<%else%>
+	<%= render "comentario/form"%>
 
+	<% @comentarios.each do |c|%>
 
-<% @comentario.each do |c| %>
-<br>
-    Usuario: <%= c.ID_USUARIO %>
-    Comentario: <%= c.COMENTARIO %>
-  </br>
-<%end%>
+	<%end%>
 
-<%= link_to 'Comentar', comentario_path %>
-<%end%>
+<%= link_to "Volver" , index_path %>

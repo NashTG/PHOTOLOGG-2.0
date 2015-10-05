@@ -11,6 +11,7 @@ class Usuario < ActiveRecord::Base
   def authenticate(contrasena)
     sql = "Call mostrarContrasena(#{self.ID_USUARIO})"
     pass = ActiveRecord::Base.connection.exec_query(sql)
+    ActiveRecord::Base.clear_active_connections!
 		if ((pass.rows.first.first).eql? contrasena)
 			return true
 		else

@@ -6,10 +6,12 @@
       <%= f.label :TITULO %>
       <%= f.text_field :TITULO , class: 'form-control'%>
 <br>
-      <%= f.file_field :FOTO , accept: "image/*"%>
+
+      Imagen: <%= f.file_field :imagen %>
 <br>
       <%= f.label :DESCRIPCION %>
       <%= f.text_field :DESCRIPCION , class: 'form-control'%>
+      <%f.number_field :ID_USUARIO, value: current_user.ID_USUARIO %>
       <br>
       <%= f.submit "Subir", class: "btn btn-primary" %>
     <% end %>

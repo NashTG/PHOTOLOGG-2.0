@@ -10,9 +10,8 @@ Rails.application.routes.draw do
 #  get '/comentar' => 'comentario/add'
   #post 'comentar' => 'comentario/add'
 
-  get 'comentario/show'
-  get 'comentar' => 'comentario/add'
-  get 'comentario/add'
+  #get 'comentario' => 'comentario/show'
+  #get 'comentar' => 'comentario/add'
 
   get 'comentario/destroy'
 
@@ -26,10 +25,10 @@ Rails.application.routes.draw do
   post 'usuarios' => 'usuario#show'
   get 'usuario/destroy'
   get 'auditoria' => 'usuario#auditoria'
-  post 'foto/create'
 
-  get 'foto/add'
-  post 'foto/add'
+  get "fotos" => "foto#index"
+  post "fotos" => "foto#show"
+  post "foto/create"
 
   get 'foto/show'
   get 'listar_cuentas' => 'usuario#index'
@@ -42,12 +41,16 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
 
   post   'login'   => 'sessions#create'
+  get 'index' => 'foto#index'
 
   get 'logout'  => 'sessions#destroy'
+ 
 
   resources :usuario
-  resources :foto
-  resources :comentario
+  resources :foto do
+    resources :comentario
+  end
+
   resources :amistad
   resources :auditoria
   resources :home

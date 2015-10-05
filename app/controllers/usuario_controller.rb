@@ -50,10 +50,11 @@ class UsuarioController < ApplicationController
 	end
 
   def destroy
-    @usuario = params[:ID_USUARIO]
+    @usuario = params[:id]
     #id = usuario.ID_USUARIO
-    sql = "CALL borrarUsuario("<<@usuario<<");"
+    sql = "call borrarUsuario(#{@usuario});"
     ActiveRecord::Base.connection.execute(sql)
+    ActiveRecord::Base.clear_active_connections!
     redirect_to listar_cuentas_path
   end
 
