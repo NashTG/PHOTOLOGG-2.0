@@ -1,0 +1,12 @@
+<% if(current_user.tipo_usuario == 2)%>
+  <%= render 'form' %>
+
+  
+  <%= link_to 'Volver', root_path%>
+
+<%else%>
+
+No eres admin, no deberías estar aquí!
+<%= link_to 'Volver', root_path%>
+
+<%end%>

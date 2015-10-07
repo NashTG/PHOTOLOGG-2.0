@@ -1,0 +1,28 @@
+<p>
+  <strong>Nick:</strong>
+  <%= @usuario.nick %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @usuario.nombre %>
+</p>
+
+<p>
+  <strong>Apellido:</strong>
+  <%= @usuario.apellido %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @usuario.email %>
+</p>
+
+<%if current_usuario == @usuario %>
+<%= link_to 'Editar Tus datos', edit_usuario_path(@usuario) %> |
+<%else%>
+
+<%= render "amigos/form"%>
+
+<%end%>
+<%= link_to 'Ir a la pagina Principal', root_path %>

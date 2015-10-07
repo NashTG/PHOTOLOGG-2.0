@@ -1,0 +1,34 @@
+<div class="center jumbotron">
+
+
+<%= form_for(@foto) do |f| %>
+  <% if @foto.errors.any? %>
+    <div id="error_explanation">
+      <h2>Errores al intentar subir esta foto:</h2>
+
+      <ul>
+      <% @foto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :titulo %><br>
+    <%= f.text_field :titulo,class:"form-control" %>
+  </div>
+  <div class="field">
+    Imagen: <%= f.file_field :imagen %>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion %><br>
+    <%= f.text_field :descripcion,class:"form-control" %>
+  </div>
+    <% f.number_field :usuario_id,value: current_usuario.id %>
+  <div class="actions">
+    <%= f.submit "Aceptar"%>
+  </div>
+<% end %>
+
+</div>

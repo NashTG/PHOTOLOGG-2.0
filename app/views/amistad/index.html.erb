@@ -1,0 +1,26 @@
+<% if @amigos %>
+        <table class="table">
+          <tr>
+            <th> NICK </th>
+            <th> NOMBRE y APELLIDO </th>
+            <th> CORREO</th>
+          </tr>
+
+          <% @amigos.each do |amigo|%>
+            <% a = amigo.deep_symbolize_keys %>
+            <tr>
+              <td><%= a[:NICK] %></td>
+              <td><%= a[:NOMBRE] %> <%= a[:APELLIDO]%> </td>
+              <td><%= a[:CORREO] %></td>
+              <td>
+                  <%= link_to "Eliminar", a, method: :destroy, data: { confirm: '¿Estas seguro?' } %>
+              </td>
+<%#'/amistad#destroy/'<<a[:ID_USUARIO] %>
+            </tr>
+
+          <% end %>
+        </table>
+        <%= link_to "Agregar Amigos", 'amistad#create' %>
+    <%else%>
+    no tienes amigos
+    <% end %>

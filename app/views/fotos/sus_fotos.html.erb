@@ -1,0 +1,39 @@
+
+<h1>Sus fotos!</h1>
+
+<table align="center" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%if @fotos != nil %>
+    <% @amigo.each do |amigo| %>
+            <% @fotos.each do |foto| %>
+              <% if foto.usuario_id == amigo.id_amigo %>
+                  <tr>
+                    <td><%= image_tag foto.imagen.url(:peque) %>  </td>  
+                    <td><strong><%= foto.titulo %></strong></td>
+                    <strong><td><%= foto.descripcion %>  </td></strong>  
+                    <td><%= link_to 'Ver', foto %></td>
+                  
+                             
+                  </tr>
+                <% end %>
+            <% end %>
+      <% end %>
+    <%else%>
+        <h1>No tiene fotos aun!</h1>
+<%end%>    
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Volver', root_path , class: "btn btn-lg btn-primary"%>

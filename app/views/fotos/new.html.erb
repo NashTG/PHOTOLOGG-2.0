@@ -1,0 +1,11 @@
+<h1>Sube una nueva foto!</h1>
+
+<% if current_usuario.f_restantes != 0 or current_usuario.tipo_usuario == 1%>
+
+<%= render 'form' %>
+<%else%>
+    <h2>Lo sentimos, ya subiste tu foto diaria.</h2>
+<% end %>
+<div>
+<%= link_to 'Volver', root_path, class: "btn btn-lg btn-primary"%>
+</div>

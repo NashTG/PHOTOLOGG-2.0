@@ -1,0 +1,54 @@
+<div class="center jumbotron">
+
+<h1>Edita tu perfil !</h1>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :nick %><br />
+    <%= f.text_field :nick , autocomplete: "on",class:"form-control"%>
+  </div>
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre, autocomplete: "on",class:"form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido %><br />
+    <%= f.text_field :apellido , autocomplete: "on",class:"form-control"%>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email , autocomplete: "on", autofocus: true,class:"form-control"%>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Esperando confirmacion para: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contrasena %> <i>(Dejala en blanco si no la quieres cambiar)</i><br />
+    <%= f.password_field :password, autocomplete: "off" ,class:"form-control"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirmar_contrasena %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" ,class:"form-control"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :contrasena_actual %> <i>(Necesitamos tu contrasena para confirmar cambios)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" ,class:"form-control"%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Actualizar", class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
+
+<h3>ELIMINA MI CUENTA</h3>
+
+<p>No estas feliz con Photolog? <%= button_to "Elimina mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete %></p>
+
+<%= link_to "Volver", root_path %>
+</div>

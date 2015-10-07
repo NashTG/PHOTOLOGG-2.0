@@ -1,0 +1,42 @@
+<%= form_for([@foto,@comentario]) do |f| %>
+  <% if @comentario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comentario.errors.count, "error") %> prohibited this comentario from being saved:</h2>
+
+      <ul>
+      <% @comentario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :comentario %>
+    <%= f.text_field :comentario , :cols => "10", :rows => "10"%>
+  </div>
+
+  <div class="field">
+
+<%if current_usuario != nil %>
+
+
+  
+    <%= f.label :puntaje %>
+    <%= f.number_field :puntaje ,max: 5, min: 0 , :value => 0%>
+
+  <%end%>
+
+
+
+  </div>
+
+  <%if current_usuario == nil %>
+    <% f.number_field :usuario_id,value: nil%>
+  <%else%>
+    <% f.number_field :usuario_id,value: current_usuario.id %>
+  <%end%>
+  <div class="actions">
+    <%= f.submit "Crear comentario" %>
+  </div>
+<% end %>

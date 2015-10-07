@@ -1,0 +1,106 @@
+<div class="center jumbotron">
+  <h1>Actualizar tu cuenta a GOLD</h1>
+
+<%= form_for [@usuario,@gold] do |f| %>
+
+  <div class="field">
+
+    <% f.text_field :usuario_id , :value => @usuario.id %>
+  </div>
+  <div class="field">
+
+    <% f.number_field :es_gold , :value => 1%>
+
+    <% f.fields_for :usuario do |usuario| %>
+      <%  usuario.text_field :tipo_usuario, :value => 1%>
+<%end%>
+  </div>
+
+  <br>
+<div id="body_content">
+    <div id="content" class="has_sidebar left">
+      <div class="has_sidebar left" id="content">
+        <div class="featured_box">
+          <table cellspacing="1" cellpadding="1" width="100%" class="table-a" style="margin-bottom:10px;text-align:center;">
+            <tbody>
+              <tr>
+                <th style="text-align:center;">Número de meses</th>
+                <th style="text-align:center;">Precio</th>
+                <th style="text-align:center;">Contratar</th>
+              </tr>
+              <tr>
+              <td class="info"><strong>1</strong> mes</a></td>
+              <td style="width:90px;" class="precio"><strong>3.000</strong>$</td>
+              <td class="contratar"><a id="paquete-1" meses="2" onclick="getLocation(2);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>2</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>5.500</strong>$</td>
+              <td class="contratar"><a id="paquete-1" meses="2" onclick="getLocation(2);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>3</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>8.000</strong>$</td>
+              <td class="contratar"><a id="paquete-2" meses="3" onclick="getLocation(3,2);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>4</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>10.500</strong>$</td>
+              <td class="contratar"><a id="paquete-3" meses="4" onclick="getLocation(4,3);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>5</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>13.000</strong>$</td>
+              <td class="contratar"><a id="paquete-4" meses="30" onclick="getLocation(5,4);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>6</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>15.000</strong>$</td>
+              <td class="contratar"><a id="paquete-5" meses="6" onclick="getLocation(6,5);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>7</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>17.000</strong>$</td>
+              <td class="contratar"><a id="paquete-6" meses="7" onclick="getLocation(7,6);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>8</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>19.000</strong>$</td>
+              <td class="contratar"><a id="paquete-7" meses="8" onclick="getLocation(8,7);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>9</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>20.000</strong>$</td>
+              <td class="contratar"><a id="paquete-8" meses="9" onclick="getLocation(9,8);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>10</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>21.000</strong>$</td>
+              <td class="contratar"><a id="paquete-9" meses="10" onclick="getLocation(10,9);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>11</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>22.000</strong>$</td>
+              <td class="contratar"><a id="paquete-10" meses="11" onclick="getLocation(11,10);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+              <tr>
+              <td class="info"><strong>12</strong> meses</a></td>
+              <td style="width:90px;" class="precio"><strong>23.000</strong>$</td>
+              <td class="contratar"><a id="paquete-11" meses="12" onclick="getLocation(12,11);return false;"><%= f.submit "Hacerse Gold!" %></a></td>
+              </tr>
+                          </tbody>
+          </table>
+          <div style="text-align: justify; font-size: 9px; line-height: 0.8;">(*) Photologg no se hace responsable de cualquier problema con el sistema de pago.</div>
+        </div>
+      </div>
+    </div>
+    <!-- end content -->
+
+<br>
+
+  <div class="field">
+
+    <% f.date_select :vencimiento %>
+  </div>
+<% end %>
+</div>

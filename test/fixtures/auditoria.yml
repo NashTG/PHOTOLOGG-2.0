@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario_id: 1
+  accion: MyString
+  old: MyString
+  new: MyString
+  ts: 2015-10-06 22:23:44
+
+two:
+  usuario_id: 1
+  accion: MyString
+  old: MyString
+  new: MyString
+  ts: 2015-10-06 22:23:44

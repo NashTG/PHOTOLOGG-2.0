@@ -11,37 +11,46 @@
       </script>
     <![endif]-->
   </head>
-  <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <body>
+      <header class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+          <%= link_to "Photolog", root_path, id: "logo" %>
+          <nav>
+            <ul class="nav navbar-nav navbar-right">
+              <% if usuario_signed_in? %>
+                     <% if current_usuario.nick != nil %>
+                          <% if current_usuario.tipo_usuario == 2 %>
+                              <li><%= link_to "Listar cuentas",   usuarios_path %></li>
+                              <li><%= link_to "Auditoría",   auditoria_path %></li>
+                          <% else %>
+                              <% if current_usuario.tipo_usuario == 1 %>
+                                  <li> <strong><font color="white">GOLD</font></strong>  <%= image_tag("logo.png", size: "50x50") %></li>
+                              <% else %>
+                                  <li><%= link_to "Ser GOLD",   new_usuario_gold_path(current_usuario.id) %></li>
+                              <% end %>
+                              <li><%=link_to "Mis amigos", mis_amigos_path%></li>
+                              <li><%= link_to "Mis fotos", mias_path %></li>
+                          <% end %>
+                          <li><%= link_to "Todas las fotos",   fotos_path %></li>
+                          <li><%= link_to "Mi perfil", edit_usuario_path(current_usuario.id) %></li>
+                          <li><%= link_to "Cerrar sesión", destroy_usuario_session_path, method: :delete  %></li>
+                     <%end%>
+              <% else %>
+                     <li><%= link_to "Todas las fotos",   fotos_path %></li>
+                     <li><%= link_to "Inicia sesión", new_usuario_session_path %></li>
+                     <li><%= link_to "Regístrate", new_usuario_path %></li>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </header>
       <div class="container">
-
-
-        <%= link_to "Photolog", root_path, id: "logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-           <% if logged_in? %>
-               <%if current_user.TIPO_USUARIO == 2 %>
-               <li><%= link_to "Auditoria", auditoria_path %></li>
-                    <li><%= link_to "Listar Cuentas",   listar_cuentas_path %></li>
-               <%end%>
-              <li><%= link_to "Mis fotos",  fotos_path %></li>
-              <li><%= link_to "Inicio",   root_path %></li>
-              <li><%= link_to "Perfil",   editar_path %></li>
-              <li><%= link_to "Cerrar Sesion",   'logout' %></li>
-          <%else%>
-            <li><%= link_to "Inicio",   root_path %></li>
-            <li><%= link_to "Inicia sesion", 'login' %></li>
-            <li><%= link_to "Registrate", registro_path  %></li>
-          <%end%>
-          </ul>
-        </nav>
+      	 <% if usuario_signed_in? %>
+      				Logueado Como: <%= current_usuario.email %>
+         <%end%>
+        <p class="notice"><%= notice %></p>
+         <p class="alert"><%= alert %></p>
+        <%= yield %>
       </div>
-    </header>
-    <div class="container">
-    <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
-      <%= yield %>
-    </div>
-  </body>
+    </body>
 </html>

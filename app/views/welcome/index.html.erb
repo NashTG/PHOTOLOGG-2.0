@@ -1,0 +1,33 @@
+<div class="center jumbotron">
+  <h1>Bienvenido a Photolog</h1>
+
+<%if usuario_signed_in?%>
+  
+  <%if current_usuario.nick == nil%>
+        <div class="field">
+          En primer lugar necesitas actualizar tus datos: <%= link_to "Actualizar mis datos",edit_usuario_path(current_usuario.id) , class: "btn btn-lg btn-primary" %>
+        </div>
+
+  <%end%>
+          <h2>
+            Bienvenido a nuestra web <strong><%= current_usuario.email%></strong>
+          </h2>
+      <%if current_usuario.nick != nil%>
+          <%if current_usuario.tipo_usuario != 2%>
+                <%= link_to "Sube una foto!", new_foto_path, class: "btn btn-lg btn-primary" %>
+                
+           
+              <br><br>O si quieres, tienes mas opciones para hacer hoy! <br><br>
+          <%end%>
+           <%= link_to "Ver todas las fotos", fotos_path, class: "btn btn-lg btn-primary" %>
+      <%end%>
+    <%else%>
+        
+          <h2>
+            Esta es la pagina principal de Photolog
+          </h2>
+          <%= link_to "Registrate ahora!", new_usuario_registration_path, class: "btn btn-lg btn-primary" %>
+          <br><br>o si ya tienes una cuenta, <br><br>
+          <%= link_to "Inicia sesion!", new_usuario_session_path, class: "btn btn-lg btn-primary" %>
+<%end%>
+</div>

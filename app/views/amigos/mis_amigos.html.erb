@@ -1,0 +1,59 @@
+
+<h1>Mis amigos</h1>
+
+<table class="table table-striped" align="left">
+  <thead>
+    <tr>
+      
+      <th>Nick de tu amigo</th>
+      <th>Correo de tu amigo</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @amigos.each do |amigo| %>
+      <tr>
+        <td><%= (Usuario.find_by id: amigo.id_amigo).nick %></td>
+        <td><%= (Usuario.find_by id: amigo.id_amigo).email %></td>
+        
+   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<table align="center" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Imagen</th>
+      <th>Usuario</th>
+      
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @amigos.each do |amigo| %>
+
+    <% @fotos.each do |foto| %>
+      <%if amigo.id_amigo == foto.usuario_id%>
+      <tr>
+        <td><strong><%= foto.titulo %></strong></td>
+        <td><%= image_tag foto.imagen.url(:peque)  %>  </td>  
+        <strong><td><%= link_to foto.usuario.nick , usuario_path(foto.usuario)%>  </td></strong>  
+        <td><%= link_to 'Ver', foto %></td>
+      </tr>
+      <%end%>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to 'Volver', root_path %>
+

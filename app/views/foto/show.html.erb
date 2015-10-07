@@ -4,10 +4,49 @@
 	DESCRIPCION: <%= @foto.DESCRIPCION %>
 	SUBIDA EL: <%= @foto.FECHA_SUBIDA %>
 
-	<%= render "comentario/form"%>
 
-	<% @comentarios.each do |c|%>
 
+<% if logged_in? %>
+	<%= form_for :comentario do |c| %>
+	<br>
+				<%= c.label :COMENTARIO %>
+				<%= c.text_field :COMENTARIO %>
+				<%= c.label :PUNTAJE %>
+				<%= c.number_field :PUNTAJE_ASIGNADO, min: 0 , max: 5%>
+				<% c.number_field :ID_USUARIO, value: current_user%>
+				<% c.number_field :ID_FOTO, value: @foto.ID_FOTO%>
+				<br>
+				<%= c.submit "Comentar", class: "btn btn-primary"%>
+		<% end %>
+<% else %>
+				<%= form_for :comentario do |c| %>
+			<br>
+						<%= c.label :COMENTARIO %>
+						<%= c.text_field :COMENTARIO %>
+						<% c.number_field :ID_USUARIO, value: 1%>
+						<% c.number_field :ID_FOTO, value: @foto.ID_FOTO%>
+						<br>
+						<%= c.submit "Comentar Anónimamente", class: "btn btn-primary"%>
+				<% end %>
+
+<% end %>
+
+
+
+	id foto: <%= @foto.id %>
+
+	<% @comentario.each do |c|%>
+
+		<% @comentario_id_foto = (Comentario.find_by id_comentario: c.ID_COMENTARIO).ID_FOTO %>
+		<% if @comentario_id_foto = @foto.id %>
+
+			<li>Comentario: <%= c.COMENTARIO %>
+				Puntaje Asignado: <%= c.PUNTAJE_ASIGNADO %>
+				Comentado por: <%= (Usuario.find_by id_usuario: c.ID_USUARIO).NICK %>
+			</li>
+		<%else%>
+			este comentario no es de esta foto
+		<%end%>
 	<%end%>
 
 <%= link_to "Volver" , index_path %>

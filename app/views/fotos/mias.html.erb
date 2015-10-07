@@ -1,0 +1,40 @@
+
+<h1>Mis fotos</h1>
+
+<table align="center" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%if @fotos != nil %>
+        <% @fotos.each do |foto| %>
+          <% if foto.usuario_id == current_usuario.id %>
+              <tr>
+                <td><%= image_tag foto.imagen.url(:peque) %>  </td>  
+                <td><strong><%= foto.titulo %></strong></td>
+                <strong><td><%= foto.descripcion %>  </td></strong>  
+                <td><%= link_to 'Ver', foto %></td>
+              
+                <td><%= link_to 'Editar', edit_foto_path(foto) %></td>
+                <td><%= link_to 'Eliminar', foto, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+         
+              </tr>
+            <% end %>
+        <% end %>
+
+    <%else%>
+        <h1>No tienes fotos aun!</h1>
+<%end%>    
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Sube tu foto', new_foto_path , class: "btn btn-lg btn-primary"%>

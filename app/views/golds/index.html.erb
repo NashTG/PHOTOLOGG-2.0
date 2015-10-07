@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Golds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Es gold</th>
+      <th>Vencimiento</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @golds.each do |gold| %>
+      <tr>
+        <td><%= gold.usuario %></td>
+        <td><%= gold.es_gold %></td>
+        <td><%= gold.vencimiento %></td>
+        <td><%= link_to 'Show', gold %></td>
+        <td><%= link_to 'Edit', edit_gold_path(gold) %></td>
+        <td><%= link_to 'Destroy', gold, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gold', new_gold_path %>

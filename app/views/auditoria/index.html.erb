@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Auditoría</h1>
+<% if current_usuario.tipo_usuario == 2%>
+<table>
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Acción</th>
+      <th>Valor Antiguo</th>
+      <th>Valor Nuevo</th>
+      <th>Fecha/Hora</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @auditoria.each do |auditorium| %>
+      <tr>
+        <td><%= auditorium.usuario_id %></td>
+        <td><%= auditorium.accion %></td>
+        <td><%= auditorium.old %></td>
+        <td><%= auditorium.new %></td>
+        <td><%= auditorium.ts %></td>
+        <td><%= link_to 'Ver', auditorium %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+No hay nada que ver aquí
+<% end %>
+<br>

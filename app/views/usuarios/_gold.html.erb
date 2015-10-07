@@ -1,0 +1,15 @@
+<div class="center jumbotron">
+
+<%= form_for(@usuario) do |f| %>
+
+
+  <div class="field">
+    <% f.label :tipo_usuario %><br>
+    <%= f.number_field :tipo_usuario , :value => 1%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Aceptar" %>
+  </div>
+
+<% end %>
+</div>

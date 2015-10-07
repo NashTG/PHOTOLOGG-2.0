@@ -11,64 +11,87 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005010639) do
+ActiveRecord::Schema.define(version: 20151006202344) do
 
-  create_table "amistad", primary_key: "ID_AMISTAD", force: :cascade do |t|
-    t.integer  "ID_USUARIO",    limit: 4
-    t.integer  "ID_AMIGO",      limit: 4
-    t.datetime "FECHA_AMISTAD"
+  create_table "amigos", force: :cascade do |t|
+    t.integer  "usuario_id", limit: 4
+    t.integer  "id_amigo",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "amistad", ["ID_USUARIO"], name: "FK_ESAMIGO", using: :btree
+  add_index "amigos", ["usuario_id"], name: "index_amigos_on_usuario_id", using: :btree
 
-  create_table "auditoria", primary_key: "ID_AUDITORIA", force: :cascade do |t|
-    t.integer  "ID_USUARIO", limit: 4
-    t.string   "ACCION",     limit: 200
-    t.string   "OLD",        limit: 200
-    t.string   "NEW",        limit: 200
-    t.datetime "TS",                     null: false
+  create_table "auditoria", force: :cascade do |t|
+    t.integer  "usuario_id", limit: 4
+    t.string   "accion",     limit: 255
+    t.string   "old",        limit: 255
+    t.string   "new",        limit: 255
+    t.datetime "ts"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "comentario", primary_key: "ID_COMENTARIO", force: :cascade do |t|
-    t.integer  "ID_FOTO",          limit: 4
-    t.string   "COMENTARIO",       limit: 200
-    t.integer  "PUNTAJE_ASIGNADO", limit: 4
-    t.datetime "FECHA_COMENTARIO",             null: false
-    t.integer  "ID_USUARIO",       limit: 4,   null: false
+  create_table "comentarios", force: :cascade do |t|
+    t.string   "comentario", limit: 255
+    t.integer  "usuario_id", limit: 4
+    t.integer  "puntaje",    limit: 4
+    t.integer  "foto_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "comentario", ["ID_FOTO"], name: "FK_POSEE", using: :btree
+  add_index "comentarios", ["foto_id"], name: "index_comentarios_on_foto_id", using: :btree
+  add_index "comentarios", ["usuario_id"], name: "index_comentarios_on_usuario_id", using: :btree
 
-  create_table "foto", primary_key: "ID_FOTO", force: :cascade do |t|
-    t.integer  "ID_USUARIO",           limit: 4
-    t.string   "TITULO",               limit: 50
-    t.binary   "photo",                limit: 4294967295
-    t.string   "DESCRIPCION",          limit: 200
-    t.integer  "SUMA_PUNTAJE",         limit: 4,          default: 0
-    t.float    "PUNTAJE_TOTAL",        limit: 24,         default: 0.0
-    t.integer  "CANTIDAD_COMENTARIOS", limit: 4,          default: 0
-    t.datetime "FECHA_SUBIDA",                                          null: false
-    t.string   "imagen_file_name",     limit: 255
-    t.string   "imagen_content_type",  limit: 255
-    t.integer  "imagen_file_size",     limit: 4
+  create_table "fotos", force: :cascade do |t|
+    t.string   "titulo",              limit: 255
+    t.string   "descripcion",         limit: 255
+    t.integer  "puntaje",             limit: 4
+    t.integer  "usuario_id",          limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "imagen_file_name",    limit: 255
+    t.string   "imagen_content_type", limit: 255
+    t.integer  "imagen_file_size",    limit: 4
     t.datetime "imagen_updated_at"
   end
 
-  add_index "foto", ["ID_USUARIO"], name: "FK_SUBE", using: :btree
-
-  create_table "usuario", primary_key: "ID_USUARIO", force: :cascade do |t|
-    t.string   "NICK",                   limit: 50,                null: false
-    t.string   "CONTRASENA",             limit: 50,                null: false
-    t.string   "NOMBRE",                 limit: 50,                null: false
-    t.string   "APELLIDO",               limit: 50
-    t.string   "CORREO",                 limit: 50
-    t.datetime "FECHA_INGRESO"
-    t.boolean  "HABILITADO",                        default: true, null: false
-    t.integer  "TIPO_USUARIO",           limit: 4,  default: 0,    null: false
-    t.datetime "FECHA_UL_ACTUALIZACION"
+  create_table "golds", force: :cascade do |t|
+    t.integer  "usuario_id",  limit: 4
+    t.integer  "es_gold",     limit: 4
+    t.date     "vencimiento"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  add_foreign_key "amistad", "usuario", column: "ID_USUARIO", primary_key: "ID_USUARIO", name: "FK_ESAMIGO"
-  add_foreign_key "comentario", "foto", column: "ID_FOTO", primary_key: "ID_FOTO", name: "FK_POSEE"
-  add_foreign_key "foto", "usuario", column: "ID_USUARIO", primary_key: "ID_USUARIO", name: "FK_SUBE"
+  add_index "golds", ["usuario_id"], name: "index_golds_on_usuario_id", using: :btree
+
+  create_table "usuarios", force: :cascade do |t|
+    t.integer  "tipo_usuario",           limit: 4,   default: 0
+    t.string   "nick",                   limit: 255
+    t.string   "nombre",                 limit: 255
+    t.string   "apellido",               limit: 255
+    t.string   "email",                  limit: 255
+    t.string   "contrasena",             limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.integer  "f_restantes",            limit: 4,                null: false
+  end
+
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "amigos", "usuarios"
+  add_foreign_key "comentarios", "fotos"
+  add_foreign_key "comentarios", "usuarios"
+  add_foreign_key "golds", "usuarios"
 end

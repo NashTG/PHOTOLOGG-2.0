@@ -1,0 +1,26 @@
+<% if (Amigo.find_by(usuario_id: params[current_usuario.id], id_amigo: params[@usuario.id])) == nil  %>
+
+<%= form_for([@usuario,@amigo]) do |f| %>
+  <% if @amigo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@amigo.errors.count, "error") %> prohibited this amigo from being saved:</h2>
+
+      <ul>
+      <% @amigo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <%= f.hidden_field :usuario_id, :value => current_usuario.id %>
+  </div>
+  <div class="field">
+  <%= f.hidden_field :id_amigo, :value => @usuario.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Seguir"%>
+  </div>
+<% end %>
+<%end%>

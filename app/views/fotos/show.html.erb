@@ -1,0 +1,65 @@
+<div class="center jumbotron">
+
+<p>
+  <strong>Titulo:</strong>
+  <h1><%= @foto.titulo %></h1>
+</p>
+<div class="field">
+	<%= image_tag @foto.imagen.url(:normal) %>
+</div>
+<p>
+  <strong>Descripcion:</strong>
+  <%= @foto.descripcion %>
+</p>
+
+<p>
+  <strong>Puntaje:</strong>
+  <%= @foto.puntaje %>
+</p>
+
+<p>
+  <strong>Subida por:</strong>
+  <%= (Usuario.find_by id: @foto.usuario_id).nick %>
+</p>
+
+<div class="field">
+	<h1>Comentarios</h1><br>
+
+	<br>
+
+	<% @foto.comentarios.each do |comentario| %>
+		<%if comentario.usuario_id== nil%>
+			<h3>
+		<strong>Anonimo</strong> - <%= comentario.comentario %> </h3>
+
+		<%else%>
+		<h3>
+
+		<%if comentario.usuario.tipo_usuario ==1%>
+			<%= image_tag("logo.png", size: "50x50")  %>
+		<%end%>
+
+		<strong><%= comentario.usuario.nick %></strong> - <%= comentario.comentario %> - Puntaje: <%= comentario.puntaje %>
+		<%if current_usuario = @foto.usuario%>
+		<%end%>
+		</h3>
+		<%end%>
+	<%end%>
+
+    <%if current_usuario != nil %>
+
+				<%if current_usuario.id != @foto.usuario_id%>
+
+					<%= render "comentarios/form"%>
+				<%end%>
+				<%else%>
+				<%= render "comentarios/form"%>
+	<%end%>
+</div>
+<%if current_usuario == @foto.usuario%>
+
+<%= link_to 'Editar', edit_foto_path(@foto) , class: "btn btn-lg btn-primary"%>
+
+<%end%>
+<%= link_to 'Volver', fotos_path , class: "btn btn-lg btn-primary"%>
+</div>
